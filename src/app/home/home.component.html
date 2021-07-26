@@ -1,0 +1,12 @@
+<div class="rounded">
+    <div class="container-fluid bg-light">
+        <div class="row">
+            <div class="col-3" *ngFor="let movie of movies">
+                <app-movie-card [moviecard]='movie'>
+                </app-movie-card>  
+            </div>
+          
+        </div>
+
+    </div>
+</div>

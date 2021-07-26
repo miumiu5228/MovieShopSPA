@@ -1,0 +1,92 @@
+<div>
+
+    <div class="row align-items-center" style="background-image:url(@Model.BackdropUrl);  background-position: center;">
+        <div class="col-3 mt-5">
+
+        </div>
+        <div class="col-6">
+            <h1>{{movie.title}}</h1>
+            <h6>{{movie.tagline}}</h6>
+            <span>{{movie.runTime}}</span>
+            <span>m</span>
+
+
+            <ul>
+                <ng-container *ngFor="let genre of movie.genres">
+                    <li>
+                        <a href="#" *ngIf="genre" class="badge badge-pill badge-dark ml-1"> {{genre.name}}</a>
+                    </li>
+                </ng-container>
+
+            </ul>
+           
+                <span class="badge text-dark" [ngClass]="{
+                'badge-warning ' : movie.rating > 8,
+                'badge-danger ' : movie.rating < 6,
+                'badge-primary ' : movie.rating >= 6 && movie.rating <= 8
+            }">{{movie.rating}}
+                </span>
+           
+            <p>{{movie.overview}}</p>
+
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-outline-light">REVIEW</button>
+            <button type="button" class="btn btn-outline-light">TRAILER</button>
+            <button type="button" class="btn btn-light">BUY 9.90</button>
+            <button type="button" class="btn btn-light">WATCH MOVIE</button>
+
+        </div>
+
+    </div>
+
+
+    <div class="row movieContent">
+        <div class="col-3 movieFacts">
+            <ul>
+                <li>
+                    <h4>MOVIE FACTS</h4>
+                </li>
+                <li><i class='far fa-calendar-alt'></i>
+                    Release Date
+                    <span class="badge badge-dark"> {{movie.runTime}} m</span>
+
+                </li>
+                <li>
+                    Run Time
+                    <span class="badge badge-dark"> {{movie.releaseDate | date:'yyyy' }}</span>
+
+                </li>
+                <li>
+                    Box Office
+                    <span class="badge badge-dark"> $$ {{movie.revenue}}</span>
+
+                </li>
+                <li>
+                    Budget
+                    <span class="badge badge-dark"> $$ {{movie.budget}}</span>
+
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-6 eachCast offset-1">
+            <div *ngFor="let cast of movie.casts">
+                <div class="row mt-5">
+                    <div class="col-1">
+                        <a asp-controller="Cast" asp-action="Details" asp-route-id="@cast.Id">
+                            <img src="{{ cast.profilePath }}" alt="{{ cast.name }}" class="img-fluid" />
+                        </a>
+                    </div>
+                    <div class="col-3">{{cast.name}}</div>
+                    <div class="col-7">{{cast.character}}</div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
